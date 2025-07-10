@@ -1,4 +1,4 @@
-# DistillDrive: End-to-End Multi-Mode Autonomous Driving Distillation by Isomorphic Hetero-Source Planning Model
+## DistillDrive: End-to-End Multi-Mode Autonomous Driving Distillation by Isomorphic Hetero-Source Planning Model
 ![轮椅机器人](docs/overview.jpg)
 
 ## News
