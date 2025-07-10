@@ -1,6 +1,5 @@
 # DistillDrive: End-to-End Multi-Mode Autonomous Driving Distillation by Isomorphic Hetero-Source Planning Model
 
-https://github.com/swc-17/SparseDrive/assets/64842878/867276dc-7c19-4e01-9a8e-81c4ed844745
 
 ## News
 * **`24 June, 2024`:** We reorganize code for better readability. Code & Models are released.
