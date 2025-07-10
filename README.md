@@ -1,4 +1,4 @@
-# SparseDrive: End-to-End Autonomous Driving via Sparse Scene Representation
+# DistillDrive: End-to-End Multi-Mode Autonomous Driving Distillation by Isomorphic Hetero-Source Planning Model
 
 https://github.com/swc-17/SparseDrive/assets/64842878/867276dc-7c19-4e01-9a8e-81c4ed844745
 
@@ -101,6 +101,7 @@ If you find SparseDrive useful in your research or applications, please consider
 ```
 
 ## Acknowledgement
+- [SparseDrive](https://github.com/swc-17/SparseDrive)
 - [Sparse4D](https://github.com/HorizonRobotics/Sparse4D)
 - [UniAD](https://github.com/OpenDriveLab/UniAD) 
 - [VAD](https://github.com/hustvl/VAD)
