@@ -2,7 +2,7 @@
 ![轮椅机器人](docs/overview.jpg)
 
 ## News
-* **`24 June, 2025`:** We reorganize code for better readability. Code & Models are released.
+<!-- * **`24 , 2025`:** We reorganize code for better readability. Code & Models are released. -->
 * **`Aug. 06, 2025`:** We release the SparseDrive paper on [arXiv](https://arxiv.org/abs/2405.19620). 
 * **`Jun. 26, 2025`:** DistillDrive is accepted to ICCV 2025!
 
