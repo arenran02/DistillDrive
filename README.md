@@ -2,15 +2,16 @@
 ![轮椅机器人](docs/overview.jpg)
 
 ## News
-* **`24 June, 2024`:** We reorganize code for better readability. Code & Models are released.
-* **`31 May, 2024`:** We release the SparseDrive paper on [arXiv](https://arxiv.org/abs/2405.19620). Code & Models will be released in June, 2024. Please stay tuned!
-
+* **`24 June, 2025`:** We reorganize code for better readability. Code & Models are released.
+* **`Aug. 06, 2025`:** We release the SparseDrive paper on [arXiv](https://arxiv.org/abs/2405.19620). 
+* **`Jun. 26, 2025`:** DistillDrive is accepted to ICCV 2025!
 
 ## Introduction
-> SparseDrive is a Sparse-Centric paradigm for end-to-end autonomous driving.
-- We explore the sparse scene representation for end-to-end autonomous driving and propose a Sparse-Centric paradigm named SparseDrive, which unifies multiple tasks with sparse instance representation.
-- We revise the great similarity shared between motion prediction and planning, correspondingly leading to a parallel design for motion planner. We further propose a hierarchical planning selection strategy incorporating a collision-aware rescore module to boost the planning performance.
-- On the challenging nuScenes benchmark, SparseDrive surpasses previous SOTA methods in terms of all metrics, especially the safety-critical metric collision rate, while keeping much higher training and inference efficiency.
+> We introduce DistillDrive, an end-to-end knowledge distillation-based autonomous driving model that leverages diversified instance imitation to enhance multi-mode motion feature learning
+- We propose a distillation architecture for multi-mode instance supervision in end-to-end planning, tackling single-target imitation learning limitations.
+- We introduce reinforcement learning-based state optimization to enhance state-to-decision space understanding and mitigate ego motion state leakage.
+- To address missing motion-guided attributes, we use a generative model for distribution-wise interaction between expert trajectories and instance features.
+- We conduct open- and closed-loop planning experiments on the nuScenes and NAVSIM datasets, achieving a 50% reduction in collision rate and a 3-point increase in both EP and PDMS over the baseline.
 
 
 ## Acknowledgement
