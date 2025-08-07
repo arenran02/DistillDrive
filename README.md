@@ -1,9 +1,11 @@
-## DistillDrive: End-to-End Multi-Mode Autonomous Driving Distillation by Isomorphic Hetero-Source Planning Model
-![轮椅机器人](docs/overview.jpg)
+<h1>DistillDrive</h1>
+<h3>End-to-End Multi-Mode Autonomous Driving Distillation by Isomorphic Hetero-Source Planning Model</h3>
+
+![](docs/overview.jpg)
 
 ## News
 <!-- * **`24 , 2025`:** We reorganize code for better readability. Code & Models are released. -->
-* **`Aug. 06, 2025`:** We release the SparseDrive paper on [arXiv](https://arxiv.org/abs/2405.19620). 
+* **`Aug. 06, 2025`:** We release the SparseDrive paper on [arXiv](​https://arxiv.org/abs/2405.19620). 
 * **`Jun. 26, 2025`:** DistillDrive is accepted to ICCV 2025!
 
 ## Introduction
@@ -15,11 +17,11 @@
 
 
 ## Acknowledgement
-- [SparseDrive](https://github.com/swc-17/SparseDrive)
-- [Sparse4D](https://github.com/HorizonRobotics/Sparse4D)
-- [UniAD](https://github.com/OpenDriveLab/UniAD) 
-- [VAD](https://github.com/hustvl/VAD)
-- [StreamPETR](https://github.com/exiawsh/StreamPETR)
-- [StreamMapNet](https://github.com/yuantianyuan01/StreamMapNet)
-- [mmdet3d](https://github.com/open-mmlab/mmdetection3d)
+- [SparseDrive](​https://github.com/swc-17/SparseDrive)
+- [Sparse4D](​https://github.com/HorizonRobotics/Sparse4D)
+- [UniAD](​https://github.com/OpenDriveLab/UniAD) 
+- [VAD](​https://github.com/hustvl/VAD)
+- [StreamPETR](​https://github.com/exiawsh/StreamPETR)
+- [StreamMapNet](​https://github.com/yuantianyuan01/StreamMapNet)
+- [mmdet3d](​https://github.com/open-mmlab/mmdetection3d)
 
