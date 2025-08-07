@@ -1,5 +1,13 @@
+<div align="center">
 <h1>DistillDrive</h1>
 <h3>End-to-End Multi-Mode Autonomous Driving Distillation by Isomorphic Hetero-Source Planning Model</h3>
+
+Accepted to ICCV 2025!
+
+
+
+
+</div>
 
 ![](docs/overview.jpg)
 
