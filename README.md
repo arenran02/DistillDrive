@@ -11,7 +11,7 @@
 
 ## News
 <!-- * **`24 , 2025`:** We reorganize code for better readability. Code & Models are released. -->
-* **`Aug. 06, 2025`:** We release the SparseDrive paper on [arXiv](https://arxiv.org/abs/2508.05402). 
+* **`Aug. 08, 2025`:** We release the SparseDrive paper on [arXiv](https://arxiv.org/abs/2508.05402). 
 * **`Jun. 26, 2025`:** DistillDrive is accepted to ICCV 2025!
 
 ## Introduction
