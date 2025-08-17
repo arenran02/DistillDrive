@@ -29,7 +29,23 @@ sh scripts/test.sh \
 
 #### Traing Perception Model
 ```bash
-The code will be released soon.
+# train
+## Adamax Optimizer
+sh scripts/train.sh projects/configs/stage1/distilldrive_stage1_adamax.py 8
+## SOAP Optimizer for better performance
+sh scripts/train.sh projects/configs/stage1/distilldrive_stage1_soap.py 8
+
+# test
+## Adamax Optimizer
+sh scripts/test.sh \
+    projects/configs/stage1/distilldrive_stage1_adamax.py \
+    checkpoint/distilldrive_stage1_adamax.pth \
+    8
+## SOAP Optimizer for better performance
+sh scripts/test.sh \
+    projects/configs/stage1/distilldrive_stage1_soap.py \
+    checkpoint/distilldrive_stage1_soap.pth \
+    8
 ```
 
 #### Motion-Guided Student Model
