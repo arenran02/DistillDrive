@@ -6,7 +6,7 @@
 
 </div>
 
-![](docs/intro.jpg)
+![](assets/intro.jpg)
 
 
 ## News
@@ -25,7 +25,7 @@
 ## Overview
 The Overview of our proposed DistillDrive. Initially, we train a teacher model with scene-structured annotation data, integrating reinforcement and imitation learning to enhance multi-mode planning. Subsequently, we constructed an end-to-end student model and used a generative model to implement motion-oriented distribution interactions in latent space. Ultimately, multi-stage knowledge distillation and multi-mode supervision synergistically enhance the planning diversity and safety margins of autonomous driving models.
 
-![](docs/overview.jpg)
+![](assets/overview.jpg)
 
 
 - Open-loop planning results on [nuScenes](https://github.com/nutonomy/nuscenes-devkit).
