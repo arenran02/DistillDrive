@@ -50,7 +50,7 @@ sh scripts/test.sh \
 
 #### Motion-Guided Student Model
 ```bash
-The code will be released soon.
+The code will be released soon....
 ```
 
 ### Visualization
