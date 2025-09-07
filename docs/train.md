@@ -54,7 +54,7 @@ sh scripts/test.sh \
 ```bash
 # train
 ## Label supervision
-sh scripts/train.sh projects/configs/stage2/distilldrive_stage2_label.py 1
+sh scripts/train.sh projects/configs/stage2/distilldrive_stage2_label.py 8
 ## Distribution supervision
 sh scripts/train.sh projects/configs/stage2/distilldrive_stage2_distribution.py 8
 
