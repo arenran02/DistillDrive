@@ -7,8 +7,8 @@
 
 <sup>1</sup> East China University of Science and Technology， <sup>2</sup> SenseAuto Research, <sup>3</sup> The University of Sydney
 
-[![DistillDrive](https://img.shields.io/badge/Paper-DiffusionDrive-2b9348.svg?logo=arXiv)](https://arxiv.org/abs/2508.05402)&nbsp;
-[![huggingface weights](https://img.shields.io/badge/%F0%9F%A4%97%20Weights-DiffusionDrive-yellow)](https://huggingface.co/RuiYuStudying/DistillDrive/tree/main)&nbsp;
+[![DistillDrive](https://img.shields.io/badge/Paper-DistillDrive-2b9348.svg?logo=arXiv)](https://arxiv.org/abs/2508.05402)&nbsp;
+[![huggingface weights](https://img.shields.io/badge/%F0%9F%A4%97%20Weights-DistillDrive-yellow)](https://huggingface.co/RuiYuStudying/DistillDrive/tree/main)&nbsp;
 
 
 </div>
