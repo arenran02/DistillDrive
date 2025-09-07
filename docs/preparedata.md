@@ -15,3 +15,4 @@ Gnerated anchors are saved to data/kmeans and can be visualized in vis/kmeans.
 ```bash
 sh scripts/kmeans.sh
 ```
+Meanwhile, we have published the [planning_vocabulary](https://huggingface.co/RuiYuStudying/DistillDrive/blob/main/kmeans_plan_vocabulary_6.npy) on Hugging Face.

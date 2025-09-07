@@ -6,6 +6,8 @@ wget https://download.pytorch.org/models/resnet50-19c8e357.pth -O checkpoint/res
 ```
 
 ### Commence training and testing
+[Model weights](https://huggingface.co/RuiYuStudying/DistillDrive/tree/main) are published  on Hugging Face.
+
 #### Traing IRL-based Teacher Model
 ```bash
 # train
@@ -50,10 +52,36 @@ sh scripts/test.sh \
 
 #### Motion-Guided Student Model
 ```bash
-The code will be released soon....
+# train
+## Label supervision
+sh scripts/train.sh projects/configs/stage2/distilldrive_stage2_label.py 1
+## Distribution supervision
+sh scripts/train.sh projects/configs/stage2/distilldrive_stage2_distribution.py 8
+
+# test
+## Adamax Optimizer
+sh scripts/test.sh \
+    projects/configs/stage2/distilldrive_stage2_label.py \
+    checkpoint/distilldrive_stage2_label.pth \
+    8
+## SOAP Optimizer for better performance
+sh scripts/test.sh \
+    projects/configs/stage2/distilldrive_stage2_distribution.py \
+    checkpoint/distilldrive_stage2_distribution.pth \
+    1
 ```
 
 ### Visualization
 ```bash
-The code will be released soon.
+# Visualize Teacher DLP
+export PYTHONPATH="$(dirname $0)/..":$PYTHONPATH
+python tools/visualization_dlp/visualize.py \
+	projects/configs/stage0/distilldrive_stage0_label.py \
+	--result-path work_dirs/distilldrive_stage0_label/results.pkl
+
+ # Visualize DistillDrive
+export PYTHONPATH="$(dirname $0)/..":$PYTHONPATH
+python tools/visualization/visualize.py \
+	projects/configs/stage2/distilldrive_stage2_label.py \
+	--result-path work_dirs/distilldrive_stage2_label/results.pkl
 ```

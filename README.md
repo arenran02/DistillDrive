@@ -3,6 +3,13 @@
 <h3>End-to-End Multi-Mode Autonomous Driving Distillation by Isomorphic Hetero-Source Planning Model</h3>
 <strong>Accepted to ICCV 2025</strong>
 
+[Rui Yu](https://github.com/YuruiAI)<sup>1</sup>, Xianghang Zhang<sup>2</sup>, Runkai Zhao<sup>3</sup>, Huaicheng Yan<sup>1</sup>, Meng Wang<sup>1</sup>, 
+
+<sup>1</sup> East China University of Science and Technology， <sup>2</sup> SenseAuto Research, <sup>3</sup> The University of Sydney
+
+[![DistillDrive](https://img.shields.io/badge/Paper-DiffusionDrive-2b9348.svg?logo=arXiv)](https://arxiv.org/abs/2508.05402)&nbsp;
+[![huggingface weights](https://img.shields.io/badge/%F0%9F%A4%97%20Weights-DiffusionDrive-yellow)](https://huggingface.co/RuiYuStudying/DistillDrive/tree/main)&nbsp;
+
 
 </div>
 
@@ -11,6 +18,7 @@
 
 ## News
 <!-- * **`24 , 2025`:** We reorganize code for better readability. Code & Models are released. -->
+* **` Sep. 7th, 2025`:** We reorganize code for better readability. Code & Models are released.
 * **`Aug. 08, 2025`:** We release the SparseDrive paper on [arXiv](https://arxiv.org/abs/2508.05402). 
 * **`Jun. 26, 2025`:** DistillDrive is accepted to ICCV 2025!
 
@@ -26,6 +34,8 @@
 The Overview of our proposed DistillDrive. Initially, we train a teacher model with scene-structured annotation data, integrating reinforcement and imitation learning to enhance multi-mode planning. Subsequently, we constructed an end-to-end student model and used a generative model to implement motion-oriented distribution interactions in latent space. Ultimately, multi-stage knowledge distillation and multi-mode supervision synergistically enhance the planning diversity and safety margins of autonomous driving models.
 
 ![](assets/overview.jpg)
+
+
 
 
 - Open-loop planning results on [nuScenes](https://github.com/nutonomy/nuscenes-devkit).
@@ -55,6 +65,23 @@ The Overview of our proposed DistillDrive. Initially, we train a teacher model w
 | Hydra-MDP   | C & L  | ResNet-34  | 97.9  | 91.7  | 92.9 | **100**  | 77.6 | 83.0   |
 | DistillDrive (Teacher) | GT     | -          | 97.5  | 96.0  | 92.8 | **100**  | 81.0 | 86.5   |
 | DistillDrive (Student) | C & L  | ResNet-34  | **98.1** | **94.6** | **93.6** | **100** | **81.0** | **86.2** |
+
+| Modle Name                            | Stage   | Weight Download |
+|-------------------------------------|--------|------|
+| distilldrive_stage0_distribution.pth | stage0 | [huggingface](https://huggingface.co/RuiYuStudying/DistillDrive/blob/main/distilldrive_stage0_distribution.pth) |
+| distilldrive_stage0_label.pth        | stage0 | [huggingface](https://huggingface.co/RuiYuStudying/DistillDrive/blob/main/distilldrive_stage0_label.pth) |
+| distilldrive_stage1_adamax.pth       | stage1 | [huggingface](https://huggingface.co/RuiYuStudying/DistillDrive/blob/main/distilldrive_stage1_adamax.pth) |
+| distilldrive_stage1_soap.pth         | stage1 | [huggingface](https://huggingface.co/RuiYuStudying/DistillDrive/blob/main/distilldrive_stage1_soap.pth) |
+| distilldrive_stage2_distribution.pth | stage2 | [huggingface](https://huggingface.co/RuiYuStudying/DistillDrive/blob/main/distilldrive_stage2_distribution.pth) |
+| distilldrive_stage2_label.pth        | stage2 | [huggingface](https://huggingface.co/RuiYuStudying/DistillDrive/blob/main/distilldrive_stage2_label.pth) |
+
+## Getting Started
+- [Preparation of DistillDrive environment](docs/install.md)
+- [Getting started from nuScenes environment preparation](docs/preparedata.md)
+- [Training and Evaluation](docs/train.md)
+
+## Video Demo on Real-world Application
+https://huggingface.co/RuiYuStudying/DistillDrive/blob/main/demo.mp4
 
 
 ## Acknowledgement

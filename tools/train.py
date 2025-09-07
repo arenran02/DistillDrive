@@ -263,7 +263,7 @@ def main():
         cfg.model, train_cfg=cfg.get("train_cfg"), test_cfg=cfg.get("test_cfg")
     )
     model.init_weights()
-    # todo
+    # TODO
     if cfg.model.head.task_config.with_motion_plan:
         checkpoint_distillation = torch.load(cfg.dlp_checkpoint)
         model.load_state_dict(checkpoint_distillation['state_dict'], strict=False)
