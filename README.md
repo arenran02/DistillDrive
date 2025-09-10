@@ -3,7 +3,7 @@
 <h3>End-to-End Multi-Mode Autonomous Driving Distillation by Isomorphic Hetero-Source Planning Model</h3>
 <strong>Accepted to ICCV 2025</strong>
 
-[Rui Yu](https://github.com/YuruiAI)<sup>1</sup>, Xianghang Zhang<sup>2</sup>, [Runkai Zhao](https://scholar.google.com/citations?user=JvoODTgAAAAJ&hl=zh-CN)<sup>3</sup>, [Huaicheng Yan](https://scholar.google.com/citations?user=FDNcY_MAAAAJ&hl=zh-CN)<sup>1</sup>, [Meng Wang](https://scholar.google.com/citations?user=_abJw5cAAAAJ&hl=zh-CN)<sup>1</sup>, 
+[Rui Yu](https://github.com/YuruiAI)<sup>1</sup>, [Xianghang Zhang](https://github.com/zxh118)<sup>2</sup>, [Runkai Zhao](https://scholar.google.com/citations?user=JvoODTgAAAAJ&hl=zh-CN)<sup>3</sup>, [Huaicheng Yan](https://scholar.google.com/citations?user=FDNcY_MAAAAJ&hl=zh-CN)<sup>1</sup>, [Meng Wang](https://scholar.google.com/citations?user=_abJw5cAAAAJ&hl=zh-CN)<sup>1</sup>, 
 
 <sup>1</sup> East China University of Science and Technology， <sup>2</sup> SenseAuto Research, <sup>3</sup> The University of Sydney
 
