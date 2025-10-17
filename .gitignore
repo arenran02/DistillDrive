@@ -1,0 +1,22 @@
+# Python 캐시 및 임시 파일 무시
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 로그 파일
+*.log
+
+# 텍스트 및 데이터 덤프
+*.pkl
+*.pth 
+*.npy
+build/
+ops/
+work_dirs/
+
+*.png
+
+# 가상환경 (선택사항)
+venv/
+.env/
