@@ -1,6 +1,6 @@
 # ================ base config ===================
 version = 'mini'
-version = 'trainval'
+# version = 'trainval'
 length = {'trainval': 28130, 'mini': 323}
 
 plugin = True
@@ -9,11 +9,11 @@ dist_params = dict(backend="nccl")
 log_level = "INFO"
 work_dir = None
 
-total_batch_size = 48
-num_gpus = 8
+total_batch_size = 6        # ✅ 1GPU 기준
+num_gpus = 1
 batch_size = total_batch_size // num_gpus
 num_iters_per_epoch = int(length[version] // (num_gpus * batch_size))
-num_epochs = 10
+num_epochs = 30
 checkpoint_epoch_interval = 10
 
 checkpoint_config = dict(
@@ -888,7 +888,7 @@ data = dict(
 # ================== training ========================
 optimizer = dict(
     type="AdamW",
-    lr=3e-4,
+    lr=3.75e-5,
     weight_decay=0.001,
     paramwise_cfg=dict(
         custom_keys={
@@ -900,7 +900,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=25, norm_type=2))
 lr_config = dict(
     policy="CosineAnnealing",
     warmup="linear",
-    warmup_iters=500,
+    warmup_iters=1000,
     warmup_ratio=1.0 / 3,
     min_lr_ratio=1e-3,
 )
@@ -924,5 +924,7 @@ evaluation = dict(
     eval_mode=eval_mode,
 )
 # ================== pretrained model ========================
-dlp_checkpoint = 'checkpoint/distilldrive_stage0_label.pth'
-load_from = 'checkpoint/distilldrive_stage1_soap.pth'
+# dlp_checkpoint = 'checkpoint/distilldrive_stage0_label.pth'
+# load_from = 'checkpoint/distilldrive_stage1_soap.pth'
+dlp_checkpoint = 'work_dirs/distilldrive_stage0_label/latest.pth'
+load_from = 'work_dirs/distilldrive_stage1_soap/latest.pth'

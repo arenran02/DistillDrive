@@ -1,6 +1,5 @@
 # ================ base config ===================
 version = 'mini'
-version = 'trainval'
 length = {'trainval': 28130, 'mini': 323}
 
 plugin = True
@@ -9,8 +8,9 @@ dist_params = dict(backend="nccl")
 log_level = "INFO"
 work_dir = None
 
-total_batch_size = 48
-num_gpus = 8
+# ⚙️ GPU 설정 변경
+total_batch_size = 6       # ✅ GPU 1개 기준 총 배치 6
+num_gpus = 1               # ✅ 1 GPU
 batch_size = total_batch_size // num_gpus
 num_iters_per_epoch = int(length[version] // (num_gpus * batch_size))
 num_epochs = 30
@@ -19,8 +19,9 @@ checkpoint_epoch_interval = 10
 checkpoint_config = dict(
     interval=num_iters_per_epoch * checkpoint_epoch_interval
 )
+# ✅ 로그 주기 줄이기 (작은 배치일 때 학습 변화 빨리 확인)
 log_config = dict(
-    interval=51,
+    interval=20,
     hooks=[
         dict(type="TextLoggerHook", by_epoch=False),
         dict(type="TensorboardLoggerHook"),
@@ -414,7 +415,7 @@ data = dict(
 # ================== training ========================
 optimizer = dict(
     type="SOAP",
-    lr=6e-4,
+    lr=7.5e-5,  # ✅ 6e-4 × (6/48) = 7.5e-5  (Linear scaling)
     weight_decay=0.001,
     paramwise_cfg=dict(
         custom_keys={
@@ -425,6 +426,9 @@ optimizer = dict(
 optimizer_config = dict(grad_clip=dict(max_norm=25, norm_type=2))
 lr_config = dict(
     policy="CosineAnnealing",
+    warmup="linear",
+    warmup_iters=1000,       # ✅ 초반 안정화를 위해 추가
+    warmup_ratio=1.0 / 10,
     min_lr_ratio=1e-2,
 )
 runner = dict(

@@ -1,6 +1,5 @@
 # ================ base config ===================
 version = 'mini'
-version = 'trainval'
 length = {'trainval': 28130, 'mini': 323}
 
 plugin = True
@@ -9,18 +8,16 @@ dist_params = dict(backend="nccl")
 log_level = "INFO"
 work_dir = None
 
-total_batch_size = 64
-num_gpus = 8
+total_batch_size = 8        # ✅ 전체 batch size
+num_gpus = 1                # ✅ GPU 1개
 batch_size = total_batch_size // num_gpus
-num_iters_per_epoch = int(length[version] // (num_gpus * batch_size))
+num_iters_per_epoch = max(1, int(length[version] // (num_gpus * batch_size)))
 num_epochs = 100
 checkpoint_epoch_interval = 100
 
-checkpoint_config = dict(
-    interval=num_iters_per_epoch * checkpoint_epoch_interval
-)
+checkpoint_config = dict(interval=num_iters_per_epoch * checkpoint_epoch_interval)
 log_config = dict(
-    interval=51,
+    interval=20,  # ✅ 로그 주기 짧게 조정
     hooks=[
         dict(type="TextLoggerHook", by_epoch=False),
         dict(type="TensorboardLoggerHook"),
@@ -509,7 +506,7 @@ model = dict(
 # ================== data ========================
 dataset_type = "NuScenes3DDataset"
 data_root = "data/nuscenes/"
-anno_root = "data/infos/" if version == 'trainval' else "data/infos/mini/"
+anno_root = "data/infos/mini/"   # ✅ mini용 annotation 경로 고정
 file_client_args = dict(backend="disk")
 
 img_norm_cfg = dict(
@@ -683,7 +680,7 @@ data = dict(
 # ================== training ========================
 optimizer = dict(
     type="SOAP",
-    lr=1e-3,
+    lr=1.25e-4,
     weight_decay=0.001,
     paramwise_cfg=dict(
         custom_keys={
@@ -694,6 +691,9 @@ optimizer = dict(
 optimizer_config = dict(grad_clip=dict(max_norm=25, norm_type=2))
 lr_config = dict(
     policy="CosineAnnealing",
+    warmup="linear",
+    warmup_iters=1000,
+    warmup_ratio=1.0 / 10,
     min_lr_ratio=1e-2,
 )
 runner = dict(
@@ -712,6 +712,6 @@ eval_mode = dict(
     motion_threshhold=0.2,
 )
 evaluation = dict(
-    interval=num_iters_per_epoch*checkpoint_epoch_interval,
+    interval=num_iters_per_epoch * checkpoint_epoch_interval,
     eval_mode=eval_mode,
 )

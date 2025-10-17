@@ -1,6 +1,5 @@
 # ================ base config ===================
 version = 'mini'
-version = 'trainval'
 length = {'trainval': 28130, 'mini': 323}
 
 plugin = True
@@ -9,8 +8,9 @@ dist_params = dict(backend="nccl")
 log_level = "INFO"
 work_dir = None
 
-total_batch_size = 48
-num_gpus = 8
+# ⚙️ GPU 설정 변경
+total_batch_size = 6      # 1 GPU만 사용 시 총 배치 6으로 변경
+num_gpus = 1
 batch_size = total_batch_size // num_gpus
 num_iters_per_epoch = int(length[version] // (num_gpus * batch_size))
 num_epochs = 30
@@ -422,7 +422,7 @@ data = dict(
 # ================== training ========================
 optimizer = dict(
     type="SOAP",
-    lr=6e-4,
+    lr=7.5e-5,
     weight_decay=0.001,
     paramwise_cfg=dict(
         custom_keys={

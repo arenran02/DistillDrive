@@ -1,6 +1,6 @@
 # ================ base config ===================
 version = 'mini'
-version = 'trainval'
+# version = 'trainval'
 length = {'trainval': 28130, 'mini': 323}
 
 plugin = True
@@ -9,10 +9,11 @@ dist_params = dict(backend="nccl")
 log_level = "INFO"
 work_dir = None
 
-total_batch_size = 48
-num_gpus = 8
+# ===== GPU 및 배치 설정 (1 GPU 기준) =====
+total_batch_size = 6        # ✅ 1GPU 기준 batch size (원래 48/8)
+num_gpus = 1
 batch_size = total_batch_size // num_gpus
-num_iters_per_epoch = int(length[version] // (num_gpus * batch_size))
+num_iters_per_epoch = max(1, int(length[version] // (num_gpus * batch_size)))
 num_epochs = 10
 checkpoint_epoch_interval = 10
 
@@ -20,7 +21,7 @@ checkpoint_config = dict(
     interval=num_iters_per_epoch * checkpoint_epoch_interval
 )
 log_config = dict(
-    interval=51,
+    interval=10,  # ✅ 로그 간격 단축 (원래 51)
     hooks=[
         dict(type="TextLoggerHook", by_epoch=False),
         dict(type="TensorboardLoggerHook"),
@@ -60,14 +61,14 @@ fut_ts = 12
 fut_mode = 6
 ego_fut_ts = 6
 ego_fut_mode = 6
-queue_length = 4 # history + current
+queue_length = 4  # history + current
 
 embed_dims = 256
 num_groups = 8
 num_decoder = 6
 num_single_frame_decoder = 1
 num_single_frame_decoder_map = 1
-use_deformable_func = True  # mmdet3d_plugin/ops/setup.py needs to be executed
+use_deformable_func = True
 strides = [4, 8, 16, 32]
 num_levels = len(strides)
 num_depth_layers = 3
@@ -112,7 +113,7 @@ model = dict(
         relu_before_extra_convs=True,
         in_channels=[256, 512, 1024, 2048],
     ),
-    depth_branch=dict(  # for auxiliary supervision only
+    depth_branch=dict(
         type="DenseDepthNet",
         embed_dims=embed_dims,
         num_depth_layers=num_depth_layers,
@@ -122,6 +123,7 @@ model = dict(
         type="DistillDriveHead",
         task_config=task_config,
         task_role='Student',
+        # ===== 이하 원본과 동일 =====
         distillation_head=dict(
             type='DLPHead',
             fut_ts=fut_ts,
@@ -154,11 +156,11 @@ model = dict(
             ),
             agent_encoder=dict(
                 type='AgentEncoder',
-                n_agent_cls=10,     
-                agent_channel=9, 
+                n_agent_cls=10,
+                agent_channel=9,
                 agent_dim=embed_dims,
                 future_steps=fut_ts,
-                agent_frame=0, 
+                agent_frame=0,
                 agent_pos=True,
                 pos_norm=False,
                 pc_range=(-51.2, -51.2, -5.0, 51.2, 51.2, 3.0),
@@ -188,14 +190,14 @@ model = dict(
             ),
             temp_graph_model=dict(
                 type="MultiheadAttention",
-                embed_dims=embed_dims if not decouple_attn_motion else embed_dims * 2,
+                embed_dims=embed_dims * 2 if decouple_attn_motion else embed_dims,
                 num_heads=num_groups,
                 batch_first=True,
                 dropout=drop_out,
             ),
             graph_model=dict(
                 type="MultiheadAttention",
-                embed_dims=embed_dims if not decouple_attn_motion else embed_dims * 2,
+                embed_dims=embed_dims * 2 if decouple_attn_motion else embed_dims,
                 num_heads=num_groups,
                 batch_first=True,
                 dropout=drop_out,
@@ -702,6 +704,7 @@ train_pipeline = [
         file_client_args=file_client_args,
     ),
     dict(type="ResizeCropFlipImage"),
+    dict(type="ResizeCropFlipImage"),
     dict(
         type="MultiScaleDepthMapGenerator",
         downsample=strides[:num_depth_layers],
@@ -853,7 +856,7 @@ data_aug_conf = {
 
 data = dict(
     samples_per_gpu=batch_size,
-    workers_per_gpu=batch_size,
+    workers_per_gpu=2,  # ✅ GPU 1개니까 worker 제한
     train=dict(
         **data_basic_config,
         ann_file=anno_root + "nuscenes_infos_train.pkl",
@@ -885,7 +888,7 @@ data = dict(
 # ================== training ========================
 optimizer = dict(
     type="AdamW",
-    lr=3e-4,
+    lr=3.75e-5,  # ✅ 3e-4 * (6/48) = 3.75e-5
     weight_decay=0.001,
     paramwise_cfg=dict(
         custom_keys={
@@ -917,9 +920,9 @@ eval_mode = dict(
     motion_threshhold=0.2,
 )
 evaluation = dict(
-    interval=num_iters_per_epoch*checkpoint_epoch_interval,
+    interval=num_iters_per_epoch * checkpoint_epoch_interval,
     eval_mode=eval_mode,
 )
 # ================== pretrained model ========================
-dlp_checkpoint = 'checkpoint/distilldrive_stage0_distribution.pth'
-load_from = 'checkpoint/distilldrive_stage1_soap.pth'
+dlp_checkpoint = 'work_dirs/distilldrive_stage0/latest.pth'
+load_from = 'work_dirs/distilldrive_stage1/latest.pth'
