@@ -14,7 +14,7 @@ total_batch_size = 6        # ✅ 1GPU 기준 batch size (원래 48/8)
 num_gpus = 1
 batch_size = total_batch_size // num_gpus
 num_iters_per_epoch = max(1, int(length[version] // (num_gpus * batch_size)))
-num_epochs = 10
+num_epochs = 30
 checkpoint_epoch_interval = 10
 
 checkpoint_config = dict(
@@ -924,5 +924,7 @@ evaluation = dict(
     eval_mode=eval_mode,
 )
 # ================== pretrained model ========================
-dlp_checkpoint = 'work_dirs/distilldrive_stage0/latest.pth'
-load_from = 'work_dirs/distilldrive_stage1/latest.pth'
+# dlp_checkpoint = 'checkpoint/distilldrive_stage0_distribution.pth'
+# load_from = 'checkpoint/distilldrive_stage1_soap.pth'
+dlp_checkpoint = 'work_dirs/distilldrive_stage0_distribution/latest.pth'
+load_from = 'work_dirs/distilldrive_stage1_soap/latest.pth'
