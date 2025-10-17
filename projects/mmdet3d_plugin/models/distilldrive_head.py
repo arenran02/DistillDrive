@@ -16,10 +16,10 @@ class DistillDriveHead(BaseModule):
         self,
         task_config: dict,
         task_role,
-        distillation_head = dict,
-        det_head = dict,
-        map_head = dict,
-        motion_plan_head = dict,
+        distillation_head=None,
+        det_head=None,
+        map_head=None,
+        motion_plan_head=None,
         init_cfg=None,
         **kwargs,
     ):
@@ -27,13 +27,13 @@ class DistillDriveHead(BaseModule):
         self.task_config = task_config
         self.task_role = task_role
         
-        if self.task_config['with_distillation']:
+        if self.task_config['with_distillation'] and distillation_head is not None:
             self.distillation_head = build_head(distillation_head)
-        if self.task_config['with_det']:
+        if self.task_config['with_det'] and det_head is not None:
             self.det_head = build_head(det_head)
-        if self.task_config['with_map']:
+        if self.task_config['with_map'] and map_head is not None:
             self.map_head = build_head(map_head)
-        if self.task_config['with_motion_plan']:
+        if self.task_config['with_motion_plan'] and motion_plan_head is not None:
             self.motion_plan_head = build_head(motion_plan_head)
         # Frozen Teacher Head
         if self.task_role == 'Student' and self.task_config['with_distillation']:

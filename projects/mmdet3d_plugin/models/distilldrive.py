@@ -27,8 +27,8 @@ __all__ = ["DistillDrive"]
 class DistillDrive(BaseDetector):
     def __init__(
         self,
-        head,
-        task_role,
+        head=None,  # ✅ 기본값 None으로
+        task_role=None,
         img_backbone=None,
         img_neck=None,
         init_cfg=None,
@@ -40,15 +40,19 @@ class DistillDrive(BaseDetector):
         depth_branch=None,
     ):
         super(DistillDrive, self).__init__(init_cfg=init_cfg)
-        self.head = build_head(head)
+
+        # ✅ None 체크 추가
+        self.head = build_head(head) if head is not None else None
+
         if use_deformable_func:
             assert DAF_VALID, "deformable_aggregation needs to be set up."
         self.use_deformable_func = use_deformable_func
 
         self.task_role = task_role
+
         if self.task_role == 'Student':
             if pretrained is not None:
-                backbone.pretrained = pretrained
+                img_backbone['pretrained'] = pretrained  # ✅ 버그 수정: backbone -> img_backbone
             self.img_backbone = build_backbone(img_backbone)
             if img_neck is not None:
                 self.img_neck = build_neck(img_neck)
@@ -56,11 +60,12 @@ class DistillDrive(BaseDetector):
                 self.depth_branch = build_from_cfg(depth_branch, PLUGIN_LAYERS)
             else:
                 self.depth_branch = None
+
             self.use_grid_mask = use_grid_mask
             if use_grid_mask:
                 self.grid_mask = GridMask(
                     True, True, rotate=1, offset=False, ratio=0.5, mode=1, prob=0.7
-                ) 
+                )
 
     @auto_fp16(apply_to=("img",), out_fp32=True)
     def extract_feat(self, img, return_depth=False, metas=None):
